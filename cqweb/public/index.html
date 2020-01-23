@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <title>CQ-Login</title>
+    <style media="screen">
+      body {
+        vertical-align: middle;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+    </style>
+  </head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <body>
+    <div class="border border-success" style="padding:25px;">
+  <h3 align="center">Login</h3>
+  <form id="loginform">
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" placeholder="Enter email" id='email' style="width:35vw;">
+    </div>
+    <div class="form-group">
+      <label for="pwd">Password:</label>
+      <input type="password" class="form-control" placeholder="Enter password" id='pwd' style="width:35vw;">
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>
+  </body>
+  <script>
+    document.getElementById('loginform').addEventListener('submit',function(event){
+      event.preventDefault();
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST','/login');
+      xhr.setRequestHeader("Content-Type","application/json");
+      var obj = new Object();
+      obj = {
+        username : document.getElementById('email').value ,
+        password : document.getElementById('pwd').value
+      }
+      obj = JSON.stringify(obj);
+      xhr.addEventListener("load",function(){
+        if(this.readyState == 4 && this.status == 200)
+        {
+          if(xhr.responseText == 'Invalid username or password!!'){
+            alert(xhr.responseText);
+          }
+          else if(xhr.responseText == 'Admin'){
+            window.location.href="/admin/profile";
+          }
+        }
+      })
+      xhr.send(obj);
+    })
+  </script>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CQ</title>
+<style>
+*{
+	box-sizing: border-box;
+}
+#pmain{
+	position:fixed;
+	left:50px;
+	right:0;
+	top:60px;
+	bottom:0;
+	margin: auto;
+	overflow: auto;
+}
+#main
+{
+	position: relative;
+	min-height: 1px;
+	width:85%;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	box-shadow: 0 3px 10px 0 rgba(115,143,147,.3);
+	background: rgb(249, 249, 249);
+	border: 1px solid #eeeeee;
+	border-radius: 2.5px;
+	padding:1.25rem;
+	overflow: auto;
+	margin: 2% auto 4%;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+}
+#user_img
+{
+	width: 150px;
+	height: 150px;
+	padding: 0.25rem;
+  background-color: #FCFCFC;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+	box-shadow: 0 3px 10px 0 rgba(115,143,147,.3);
+  max-width: 100%;
+}
+.d0{
+	width:100%;
+	margin-bottom:35px;
+}
+.rowc{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+.d10
+{
+	float: left;
+	min-width:46%;
+	box-shadow: 0 3px 10px 0 rgba(115,143,147,.3);
+	position: relative;
+	overflow: auto;
+  min-height: 1px;
+	margin:0px 30px 15px 10px;
+	border: 1px solid #ddd;
+}
+.d20
+{
+	float: left;
+	min-width:46%;
+	box-shadow: 0 3px 10px 0 rgba(115,143,147,.3);
+	position: relative;
+  min-height: 1px;
+	overflow: auto;
+	margin:0px 5px 15px 10px;
+	border: 1px solid #ddd;
+}
+.d11
+{
+	color: #333;
+  background-color: #f5f5f5;
+  border-color: #ddd;
+	padding: 10px 15px;
+  border-bottom: 1px solid transparent;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+	border-bottom: 1px solid #ddd;
+}
+.d12
+{
+	padding: 15px;
+	background-color: #ffffff;
+}
+#edit_btn {
+	width: 20%;
+	background: orange;
+	border-color: #4cae4c;
+	display: inline-block;
+	padding: 6px 12px;
+	margin-bottom: 0;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1.42857143;
+	text-align: center;
+	white-space: nowrap;
+	-webkit-appearance: button;
+	cursor: pointer;
+	outline: none !important;
+	user-select: none;
+	background-image: none;
+	border: 1px solid transparent;
+	position: relative;
+	left :800px;
+	min-width:16%;
+  min-height: 1px;
+	margin-bottom: 10px;
+}
+</style>
+</head>
+<body>
+	<% include ./navbar %>
+<div id="pmain">
+<div id="main">
+	<div class="d0">
+		<img src="/image/<%= info.pic_id %>" id="user_img">
+	</div>
+	<!-- <button id="edit_btn" onclick="reqEditPanel()">Edit</button> -->
+	<div class="rowc">
+		<div class="d10">
+			<div class="d11">
+				Email
+			</div>
+			<div class="d12">
+				<%= info.username %>
+			</div>
+		</div>
+		<div class="d20">
+			<div class="d11">
+				Gender
+			</div>
+			<div class="d12">
+				<%= info.gender %>
+			</div>
+		</div>
+	</div>
+	<div class="rowc">
+	<div class="d10">
+		<div class="d11">
+			Name
+		</div>
+		<div class="d12">
+			<%= info.name %>
+		</div>
+	</div>
+	<div class="d20">
+		<div class="d11">
+			City
+		</div>
+		<div class="d12">
+			<%= info.city %>
+		</div>
+	</div>
+	</div>
+	<div class="rowc">
+	<div class="d10">
+		<div class="d11">
+			D.O.B
+		</div>
+		<div class="d12">
+			<%= info.dob %>
+		</div>
+	</div>
+	<div class="d20">
+		<div class="d11">
+			Phone
+		</div>
+		<div class="d12">
+			<%= info.phoneno %>
+		</div>
+	</div>
+	</div>
+</div>
+</div>
+</body>
+<script type="text/javascript">
+document.getElementsByClassName('anc')[0].classList.add('active');
+      document.getElementsByClassName('fa-home')[0].classList.add('act');
+// function reqEditPanel(){
+// 	var xhr = new XMLHttpRequest();
+// 	xhr.open('GET','/editUsers');
+// 	xhr.addEventListener("load",function()
+// {
+// 	window.location.href="http://localhost:3225/editPage";
+// });
+// 	xhr.send();
+// }
+</script>
+</html>

@@ -1,0 +1,168 @@
+<html>
+   <head>
+      <title>
+         CQ
+      </title>
+      <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+      <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+      <style>
+         *
+         {
+         box-sizing : border-box;
+         font-family:Helvetica;
+         }
+         #commhead
+         {
+         top:100px;
+         position:absolute;
+         width:100%;
+         left:50px;
+         height:37px;
+         background-color:#333333;
+         }
+         #pmain
+         {
+         position: fixed;
+         left:50px;
+         right:0;
+         top:60px;
+         bottom:0;
+         margin: auto;
+         overflow: auto;
+         }
+         .community-head-btn
+         {
+         border-bottom: 4px solid white;
+         }
+         .btn
+         {
+         color:white;
+         display: inline-block;
+         padding: 6px 12px;
+         margin-bottom: 0;
+         font-size: 14px;
+         font-weight: 400;
+         line-height: 1.42857143;
+         text-align: center;
+         white-space: nowrap;
+         vertical-align: middle;
+         touch-action: manipulation;
+         cursor: pointer;
+         border: 1px solid white;
+         }
+         #Editor_div
+         {
+         top:12px;
+         left:450px;
+         position:absolute;
+         display:inline-block;
+         color:#707070;
+         margin-top:55px;
+         }
+         #Com_Name
+         {
+         height:34px;
+         width:500px;
+         padding:6px 12px;
+         border-radius:3px;
+         }
+         #upldImg {
+           outline: none;
+           background: #eea236;
+           color: white;
+           border :none;
+           display: inline-block;
+           padding: 6px 12px;
+           margin-bottom: 0;
+           font-size: 14px;
+            font-weight: 400;
+       line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    left: 100px;
+    margin: 7px;
+    cursor: pointer;
+         }
+         #createcom {
+           cursor: pointer;
+           color: #fff;
+     background-color: #337ab7;
+     border-color: #2e6da4;
+     display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    width: 500px;
+    margin-bottom: 100px;
+         }
+      </style>
+   </head>
+   <body>
+    <% include ./navbar %>
+      <div id="pmain" >
+         <div style="position:absolute;width:100%">
+            <div style="width:100%;background-image: linear-gradient(to bottom, #4ba2b7, #42a6be, #38aac6, #29adcd, #0fb1d5);padding:6px 0px 0px;display:block;height:50px;">
+               <a class="btn community-head-btn" href="/community/communityPanel" style="margin:0px 0px 0px 100px;border-radius:0;border-bottom:4px white solid;"><i class="fa fa-users" style="padding:0px;font-size:14px;"></i></a>
+               <a class="btn" href="" style="margin:0px 0px 0px 10px;border-radius:0;"><i class="fa fa-search" style="padding:0px;font-size:14px;"></i></a>
+            </div>
+         </div>
+         <div id="Editor_div">
+                <form action="/community/addcomm" method="POST" enctype="multipart/form-data" id="frm">
+            <div style="font-size:24px;">
+               <p>Create Community</p>
+            </div>
+            <br>
+            <div>
+               <input type="text" placeholder="Name" name="Com_Name" id="Com_Name">
+            </div><br>
+            <h4>Description</h4>
+            <br>
+            <div id="editor" name="editor">
+            </div>
+            <input name="quill" id="quill" value="" style="display: none;">
+            <br>
+            Rule :
+            <input type="radio" name="role" value="Direct" checked>Direct &nbsp;
+            <input type="radio" name="role" value="Permission">Permission<br>
+            <button id="upldImg" onclick="document.getElementById('imgf').click();">Upload image</button>
+              <input type="file" id="imgf" style="display:none;" name="profilePic" accept="image/*" required ><br>
+              <button id="createcom" type="submit">Create Community</button>
+            </form>
+            
+         </div>
+      </div>
+   </body>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+   <script src="https://code.jquery.com/jquery-1.12.4.min.js">
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+   <script type="text/javascript">
+   var quill = new Quill('#editor', {
+     modules: {
+     toolbar: true
+  },
+    theme: 'snow'
+  });
+
+  quill.on('text-change', function() {
+  document.getElementById('quill').value = quill.root.innerText;
+});
+
+  fun();
+  function fun()
+  {
+    document.getElementsByClassName("ql-editor")[0].style.height="300px";
+  }
+
+  function imgUpload(targetElement)
+  {
+    console.log(targetElement);
+  }
+  
+   </script>
+</html>
